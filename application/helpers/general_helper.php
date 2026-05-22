@@ -81,18 +81,18 @@ function _getNombreMes($month=''){
 	$nombre = '';
 
 	switch ($month) {
-		case '0':$nombre  = "Enero";break;
-		case '1':$nombre  = "Febrero";break;
-		case '2':$nombre  = "Marzo";break;
-		case '3':$nombre  = "Abril";break;
-		case '4':$nombre  = "Mayo";break;
-		case '5':$nombre  = "Junio";break;
-		case '6':$nombre  = "Julio";break;
-		case '7':$nombre  = "Agosto";break;
-		case '8':$nombre  = "Septiembre";break;
-		case '9':$nombre  = "Octumbre";break;
-		case '10':$nombre = "Noviembre";break;
-		case '11':$nombre = "Diciembre";break;
+		case '1':$nombre  = "Enero";break;
+		case '2':$nombre  = "Febrero";break;
+		case '3':$nombre  = "Marzo";break;
+		case '4':$nombre  = "Abril";break;
+		case '5':$nombre  = "Mayo";break;
+		case '6':$nombre  = "Junio";break;
+		case '7':$nombre  = "Julio";break;
+		case '8':$nombre  = "Agosto";break;
+		case '9':$nombre  = "Septiembre";break;
+		case '10':$nombre  = "Octumbre";break;
+		case '11':$nombre = "Noviembre";break;
+		case '12':$nombre = "Diciembre";break;
 		default:$nombre   = 'desconocido';break;
 	}
 	return $nombre;

@@ -38,12 +38,14 @@ class Inicio extends CI_Controller {
 
 
 	public function index(){
-		$this->data['breadcrumb'] = 'Inicio';
+		$this->data['fecha_corriente'] = _getNombreMes(date('n')) .' del '.date('Y');
+		$this->data['menu_superior'] = $this->load->view('menu_superior', array('breadcrumb' => 'Inicio'), TRUE);
+		$this->data['footer'] = $this->load->view('footer', '', TRUE);
 		$this->template->content->view('inicio', $this->data);
 		$this->template->publish('template');
 	}
 
-	public function contacto(){
+	public function mes_corr(){
 		//code
 	}
 	
