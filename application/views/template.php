@@ -11,7 +11,7 @@
 	<title><?php echo $title; ?></title>
 	<meta content="Unión San Jerónimo - Bilbao" name="description">
 	<meta name="theme-color" content="#ffffff">
-
+ 
 	<link href="<?php #echo base_url('assets/img/icon.png') ?>" rel="icon">
 	<link href="<?php #echo base_url('assets/img/icon.png') ?>" rel="apple-touch-icon">
 
