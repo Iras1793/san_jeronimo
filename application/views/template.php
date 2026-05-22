@@ -5,20 +5,22 @@
 
 <head> 
 	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	
 	<title><?php echo $title; ?></title>
-	<meta content="Desarrollo de sitios web" name="description">
-	<meta content="Web development" name="keywords">
+	<meta content="Unión San Jerónimo - Bilbao" name="description">
+	<meta name="theme-color" content="#ffffff">
+
 	<link href="<?php #echo base_url('assets/img/icon.png') ?>" rel="icon">
 	<link href="<?php #echo base_url('assets/img/icon.png') ?>" rel="apple-touch-icon">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-	<!-- Vendor CSS Files -->
-	<?php foreach ($estilos as $key => $css): ?>
-		<link rel="stylesheet" href="<?php echo base_url($css) ?>">
-	<?php endforeach ?>
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/simplebar.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/simplebar_2.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css') ?>">
 
+    <script src="<?php echo base_url('assets/js/config.js') ?>"></script>
+    <script src="<?php echo base_url('assets/js/color-modes.js') ?>"></script>
 </head>
 
 <body>
@@ -29,16 +31,17 @@
 
 
 
-	<!-- Vendor JS Files -->
-	<?php foreach ($javascript as $key => $js): ?>
-		<script src="<?php echo base_url($js) ?>"></script>
-	<?php endforeach ?>
+
+	<script src="<?php echo base_url('assets/js/coreui.bundle.min.js') ?>"></script>
+	<script src="<?php echo base_url('assets/js/simplebar.min.js') ?>"></script>
+	
 	<script>
-		window.onload = function(){
-			if (window.jQuery) {
-				//code
+		const header = document.querySelector("header.header");
+		document.addEventListener("scroll", () => {
+        	if (header) {
+				header.classList.toggle("shadow-sm", document.documentElement.scrollTop > 0);
 			}
-		};
+		});
 	</script>
 </body>
 

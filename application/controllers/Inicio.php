@@ -2,7 +2,7 @@
 
 
 class Inicio extends CI_Controller {
-    var $data = array('title'=>'Movealong');
+    var $data = array('title'=>'Unión San Jerónimo - Bilbao');
 	var $fields = array(
 			'nombre' => array('value'=>'','validate' => array(
 											'label'   => 'Nombre',
