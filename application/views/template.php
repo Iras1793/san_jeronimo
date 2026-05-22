@@ -22,7 +22,7 @@
     <script src="<?php echo base_url('assets/js/config.js') ?>"></script>
     <script src="<?php echo base_url('assets/js/color-modes.js') ?>"></script>
 </head>
-
+ 
 <body>
 
 
