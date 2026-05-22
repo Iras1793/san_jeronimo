@@ -38,29 +38,14 @@ class Inicio extends CI_Controller {
 
 
 	public function index(){
+		$this->data['breadcrumb'] = 'Inicio';
 		$this->template->content->view('inicio', $this->data);
 		$this->template->publish('template');
 	}
 
 	public function contacto(){
-		$result = array('result'=>false,'message'=>'Ocurrió un error al enviar la información, intente más tarde');
-		$this->form_validation->set_rules('nombre','Nombre','trim|required|xss_clean');
-		$this->form_validation->set_rules('correo','Correo','trim|xss_clean');
-		$this->form_validation->set_rules('mensaje','Mensaje','trim|required|xss_clean');
-		$this->form_validation->set_rules('numero','Numero','trim|required|xss_clean');
-		if( $this->form_validation->run() != FALSE ):
-			log_message('error', json_encode($_POST));
-			$body = "Nombre: ".$this->input->post('nombre', true)." | Correo: ".$this->input->post('correo', true)." | mensaje: ".$this->input->post('mensaje', true). " | Teléfono: ".$this->input->post('numero', true);
-			if(!_send_mail("Tienes una nueva cotización", 'victorcruz1793@gmail.com', $body)):
-				log_message("error", "Fallo al enviar correo a victorcruz1793@gmail.com");
-			endif;
-			if(!_send_mail("Tienes una nueva cotización", 'latrejocp@outlook.com', $body)):
-				log_message("error", "Fallo al enviar correo a latrejocp@outlook.com");
-			endif;
-			$result['result'] = true;
-			$result['message'] = 'Muchas gracias, en breve nos comunicaremos contigo';
-		endif;
-		echo json_encode($result);
+		//code
 	}
+	
 
-}
+}//end of class
