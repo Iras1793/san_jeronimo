@@ -12,8 +12,8 @@
 	<meta content="Unión San Jerónimo - Bilbao" name="description">
 	<meta name="theme-color" content="#ffffff">
  
-	<link href="<?php #echo base_url('assets/img/icon.png') ?>" rel="icon">
-	<link href="<?php #echo base_url('assets/img/icon.png') ?>" rel="apple-touch-icon">
+	<link href="<?php echo base_url('assets/favicon.png') ?>" rel="icon">
+	<link href="<?php echo base_url('assets/favicon.png') ?>" rel="apple-touch-icon">
 
     <link rel="stylesheet" href="<?php echo base_url('assets/css/simplebar.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/simplebar_2.css') ?>">
