@@ -24,10 +24,12 @@ class Morosidad extends CI_Controller {
 	);
 
 
-    var $javascript = array(
-    );
+	var $javascript = array(
+		'assets/js/datatables.min.js'
+	);
 
-    var $estilos = array(
+	var $estilos = array(
+		'assets/css/datatables.min.css'
 	);
 
 	public function __construct(){
