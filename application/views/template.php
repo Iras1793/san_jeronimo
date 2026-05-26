@@ -25,6 +25,13 @@
  
 <body>
 
+<div id="spinner" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-white" style="z-index:9999">
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div>
+
+
 	<div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
 		<div class="sidebar-header border-bottom">
 			<div class="sidebar-brand me-auto">
@@ -142,7 +149,13 @@
 	<?php echo $content; ?>
 
 
-
+<script>
+$(window).on('load', function () {
+  $('#spinner').fadeOut(400, function () {
+    $(this).remove();
+  });
+});	
+</script>
 
 
 	<script src="<?php echo base_url('assets/js/coreui.bundle.min.js') ?>"></script>
