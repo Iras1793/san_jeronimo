@@ -46,8 +46,11 @@ class Proveedores extends CI_Controller {
 		$this->template->publish('template');
 	}
 
-	public function mes_corr(){
-		//code
+	public function agregar(){
+		$this->data['menu_superior'] = $this->load->view('menu_superior', array('breadcrumb' => 'Proveedores / Agregar nuevo'), TRUE);
+		$this->data['footer'] = $this->load->view('footer', '', TRUE);
+		$this->template->content->view('proveedores_agregar', $this->data);
+		$this->template->publish('template');
 	}
 	
 

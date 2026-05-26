@@ -18,7 +18,7 @@
             <div class="card-body">
               <p class="text-body-secondary small">Información obtenida desde el excel</p>
               <div class="d-flex justify-content-end">
-              <a href="#" class="btn btn-success text-white">
+              <a href="<?php echo site_url('morosidad/agregar') ?>" class="btn btn-success text-white">
 <svg xmlns="http://www.w3.org/2000/svg" fill="#FFF" class="icon" viewBox="0 0 16 16">
   <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
   <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
@@ -83,7 +83,7 @@
                             </a>
 </li>
   <li class="list-group-item" style="border: none !important;background-color: transparent!important;">
-                            <a class="btn btn-danger" href="#">
+                            <a class="btn btn-danger" href="#" data-coreui-toggle="modal" data-coreui-target="#modalEliminar">
 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon" viewBox="0 0 16 16" style="fill:#FFF!important">
   <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
 </svg>                            
@@ -118,7 +118,7 @@
                             </a>
 </li>
   <li class="list-group-item" style="border: none !important;background-color: transparent!important;">
-                            <a class="btn btn-danger" href="#">
+                            <a class="btn btn-danger" href="#" data-coreui-toggle="modal" data-coreui-target="#modalEliminar">
 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon" viewBox="0 0 16 16" style="fill:#FFF!important">
   <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
 </svg>                            
@@ -153,7 +153,7 @@
                             </a>
 </li>
   <li class="list-group-item" style="border: none !important;background-color: transparent!important;">
-                            <a class="btn btn-danger" href="#">
+                            <a class="btn btn-danger" href="#" data-coreui-toggle="modal" data-coreui-target="#modalEliminar">
 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="icon" viewBox="0 0 16 16" style="fill:#FFF!important">
   <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
 </svg>                            
@@ -187,6 +187,30 @@
 </div>
 <!-- Fin contenido -->
 
+
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminar" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEliminar">¿Seguro que deseas eliminar el registro?</h5>
+                <button class="btn-close" type="button" data-coreui-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <center>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#ffd64f" class="" viewBox="0 0 16 16" width="76" height="76" >
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                    </svg>
+                </center>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-info text-white" type="button" data-coreui-dismiss="modal">Cancelar</button>
+                <button class="btn btn-danger text-white" type="button">Sí, eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
 <?php echo $footer; ?>
 
 <?php foreach ($javascript as $key => $js): ?>
@@ -195,18 +219,31 @@
 
 
 <script>
-    new DataTable('#morosidad_table', {
+
+
+new DataTable('#morosidad_table', {
     language: {
         url: '<?php echo base_url("assets/js/datatable_lang_es.json") ?>',
-    },        
-        layout: {
-            topStart: {
-                buttons: ['excel', 'pdf']
-            }
-        },
+    },  
     scrollX: true,
-    scrollY: 200        
-    });
+    scrollY: 400,
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            className: 'btn-success text-white mr-4',
+            exportOptions: {columns: ':not(:last-child)',}
+        },
+        {
+            extend: 'pdfHtml5',
+            text: 'PDF',
+            className: 'btn-danger text-white',
+            exportOptions: {columns: ':not(:last-child)'}
+        }
+    ]
+});    
+
 </script>
 
 </div>

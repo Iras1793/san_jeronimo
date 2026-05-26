@@ -25,7 +25,10 @@ class Viviendas extends CI_Controller {
 
 
 	var $javascript = array(
-		'assets/js/datatables.min.js'
+		'assets/js/jquery.min.js',
+		'assets/js/JSZip.min.js',
+		'assets/js/pdfmake.min.js',
+		'assets/js/datatables.min.js',
 	);
 
 	var $estilos = array(
@@ -46,8 +49,11 @@ class Viviendas extends CI_Controller {
 		$this->template->publish('template');
 	}
 
-	public function mes_corr(){
-		//code
+	public function agregar(){
+		$this->data['menu_superior'] = $this->load->view('menu_superior', array('breadcrumb' => 'Viviendas / Agregar nuevo'), TRUE);
+		$this->data['footer'] = $this->load->view('footer', '', TRUE);
+		$this->template->content->view('viviendas_agregar', $this->data);
+		$this->template->publish('template');
 	}
 	
 

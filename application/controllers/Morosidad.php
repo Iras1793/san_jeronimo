@@ -46,8 +46,11 @@ class Morosidad extends CI_Controller {
 		$this->template->publish('template');
 	}
 
-	public function mes_corr(){
-		//code
+	public function agregar(){
+		$this->data['menu_superior'] = $this->load->view('menu_superior', array('breadcrumb' => 'Morosidad / Agregar nuevo'), TRUE);
+		$this->data['footer'] = $this->load->view('footer', '', TRUE);
+		$this->template->content->view('morosidad_agregar', $this->data);
+		$this->template->publish('template');
 	}
 	
 

@@ -46,8 +46,11 @@ class Propietarios extends CI_Controller {
 		$this->template->publish('template');
 	}
 
-	public function mes_corr(){
-		//code
+	public function agregar(){
+		$this->data['menu_superior'] = $this->load->view('menu_superior', array('breadcrumb' => 'Propietarios / Agregar nuevo'), TRUE);
+		$this->data['footer'] = $this->load->view('footer', '', TRUE);
+		$this->template->content->view('propietarios_agregar', $this->data);
+		$this->template->publish('template');
 	}
 	
 
