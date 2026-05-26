@@ -25,7 +25,10 @@ class Sanciones extends CI_Controller {
 
 
 	var $javascript = array(
-		'assets/js/datatables.min.js'
+		'assets/js/jquery.min.js',
+		'assets/js/JSZip.min.js',
+		'assets/js/pdfmake.min.js',
+		'assets/js/datatables.min.js',
 	);
 
 	var $estilos = array(
