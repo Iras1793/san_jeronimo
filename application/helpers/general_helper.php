@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php #if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
 /*
@@ -11,7 +11,7 @@ function _print_messages(){
 	$all = $CI->messages->get();
 	foreach($all as $type=>$messages)
 		foreach($messages as $message)
-			echo '<div class="alert alert-'.$type.'"><p align="center">'.$message.'</p></div>';
+			echo '<div id="alert-'.$type.'" class="alert alert-'.$type.' fade show"><p align="center">'.$message.'</p></div>';
 }
 
 /*
@@ -120,3 +120,23 @@ function _RandomString($length=10,$uc=TRUE,$n=TRUE,$sc=FALSE){
     return $rstr;
 }
 
+function cargar_env(string $ruta): void{
+        if ( ! file_exists($ruta)) return;
+
+        $lineas = file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        foreach ($lineas as $linea) {
+            if (strpos(trim($linea), '#') === 0) continue;
+
+            [$clave, $valor] = explode('=', $linea, 2);
+
+            $clave = trim($clave);
+            $valor = trim($valor);
+
+            if ( ! getenv($clave)) {
+                putenv("$clave=$valor");
+                $_ENV[$clave]    = $valor;
+                $_SERVER[$clave] = $valor;
+            }
+        }
+}

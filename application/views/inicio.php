@@ -102,5 +102,8 @@
 
 <?php echo $footer; ?>
 
+<?php foreach ($javascript as $key => $js): ?>
+  <script src="<?php echo base_url($js) ?>"></script>
+<?php endforeach ?>
 
 </div>

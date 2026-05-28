@@ -24,10 +24,15 @@ class Tags extends CI_Controller {
 	);
 
 
-    var $javascript = array(
-    );
+	var $javascript = array(
+		'assets/js/jquery.min.js',
+		'assets/js/JSZip.min.js',
+		'assets/js/pdfmake.min.js',
+		'assets/js/datatables.min.js',
+	);
 
-    var $estilos = array(
+	var $estilos = array(
+		'assets/css/datatables.min.css'
 	);
 
 	public function __construct(){
@@ -45,6 +50,7 @@ class Tags extends CI_Controller {
 	}
 
 	public function agregar(){
+		$this->data['javascript'] = array('assets/js/jquery.min.js');
 		$this->data['menu_superior'] = $this->load->view('menu_superior', array('breadcrumb' => 'Tags / Agregar nuevo'), TRUE);
 		$this->data['footer'] = $this->load->view('footer', '', TRUE);
 		$this->template->content->view('tags_agregar', $this->data);

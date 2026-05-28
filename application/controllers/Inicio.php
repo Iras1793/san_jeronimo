@@ -25,6 +25,7 @@ class Inicio extends CI_Controller {
 
 
     var $javascript = array(
+    	'assets/js/jquery.min.js',
     );
 
     var $estilos = array(

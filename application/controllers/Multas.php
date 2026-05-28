@@ -50,6 +50,7 @@ class Multas extends CI_Controller {
 	}
 
 	public function agregar(){
+		$this->data['javascript'] = array('assets/js/jquery.min.js');
 		$this->data['menu_superior'] = $this->load->view('menu_superior', array('breadcrumb' => 'Multas / Agregar nuevo'), TRUE);
 		$this->data['footer'] = $this->load->view('footer', '', TRUE);
 		$this->template->content->view('multas_agregar', $this->data);

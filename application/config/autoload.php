@@ -59,7 +59,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 # $autoload['libraries'] = array("database","Messages","Template","form_validation","session","Auth");
-$autoload['libraries'] = array("Messages","Template","form_validation","session","Auth");
+$autoload['libraries'] = array("database","Messages","Template","form_validation","session","Auth", "Crypto");
 
 
 /*
@@ -105,7 +105,7 @@ $autoload['helper'] = array('form', 'url','security','general');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array();
+$autoload['config'] = ['crypto'];
 
 /*
 | -------------------------------------------------------------------

@@ -3,8 +3,8 @@
 
 class General extends CI_Model {
 
-	var $table  = 'tab_data';
-	var $id     = 'iddata';
+	var $table  = '';
+	var $id     = '';
 	var $fields = array();
 
 	function __construct(){
@@ -16,7 +16,7 @@ class General extends CI_Model {
 		if( $cliente != null && is_array($cliente) ){
 			foreach( $cliente as $key => $info )
 				$this->fields[$key] = $info['value'];
-			$this->fields['fecha'] = date('Y-m-d H:i:s');
+			$this->fields['fecha_creacion'] = date('Y-m-d');
 			return $this->db->insert($this->table, $this->fields);
 		}
 		return false;
@@ -59,7 +59,7 @@ class General extends CI_Model {
 
 			foreach( $object as $key => $info )
 				$fields[$key] = $info['value'];
-
+			$fields['fecha_actualizacion'] = date('Y-m-d H:i:s');
 			if( is_numeric($idobject) && $idobject > 0 )
 				$this->db->where($this->id,$idobject);
 

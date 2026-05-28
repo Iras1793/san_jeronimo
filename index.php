@@ -55,7 +55,8 @@
  */
 define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 date_default_timezone_set("America/Mexico_City");
-
+require_once __DIR__ . '/application/helpers/general_helper.php';
+cargar_env(__DIR__ . '/.env');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
