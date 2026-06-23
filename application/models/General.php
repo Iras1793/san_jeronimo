@@ -96,141 +96,6 @@ class General extends CI_Model {
 	}
 
 
-	public function getStock($value=''){
-		$this->db->from('productos');
-		$this->db->select('nombre, stock, codigo');
-		$this->db->where('status',1);
-		$query = $this->db->get();
-		if ($query->num_rows() >= 1)
-			return $query->result();
-		else
-			return false;
-	}//end reporte function
-
-	public function getVentasByCarrito(){
-		$totales = array();
-		$current_year = date('Y');
-		for ($i=1; $i <= 3; $i++) { 
-			$query = "
-				select count(*) as total from ventas
-				where idcarrito != 0 
-				and status = 1 
-				and YEAR(fecha_venta) = $current_year
-				;
-			";
-			$query = $this->db->query($query);
-			if ($query->num_rows() > 0)
-				array_push($totales, current($query->result()));
-			$current_year = date("Y", strtotime("+".$i." year"));
-		}
-		return $totales;
-	}//end getVentasByCarrito function
-
-	public function getVentasExternas(){
-		$totales = array();
-		$current_year = date('Y');
-		for ($i=1; $i <= 3; $i++) { 
-			$query = "
-				select count(*) as total from ventas
-				where idcarrito = 0 
-				and status = 1 
-				and YEAR(fecha_venta) = $current_year
-				;
-			";
-			$query = $this->db->query($query);
-			if ($query->num_rows() > 0)
-				array_push($totales, current($query->result()));
-			$current_year = date("Y", strtotime("+".$i." year"));
-		}
-		return $totales;
-	}//end getVentasExternas function
-
-
-	//funcion que registra una visita
-	public function visitas($user_token='', $ip='', $bulk = null){
-		$result = false;
-		if( !empty($user_token) && !empty($ip) && !empty($bulk)  ){
-			$this->table = 'visitas';
-			$this->id    = 'id';
-			$campos = array();
-			$campos['user_token']['value']  = $user_token;
-			$campos['ip']['value']          = $ip;
-			$campos['server_info']['value'] = $bulk;
-			//primero buscamos si es un usuario nuevo, si es asi se
-			//agrega su informacion
-			$user = $this->get(null,array('status'=>1,'user_token'=>$user_token));
-			if( !$user )
-				$result = $this->insert($campos);
-		}
-		return $result;
-	}//end clientInfo
-
-	//obtiene visitas por mes
-	public function getVisitasByMonth(){
-		$year = date('Y');
-		$mes  = date('m');
-		$dias = date('t');//obtiene el numero total de dias
-		$fecha_inicio = "$year-$mes-01";//2019-06-01
-		$fecha_fin    = "$year-$mes-$dias";//2019-06-31
-		
-		$this->db->select('id');
-		$this->db->from('visitas');
-		$this->db->where('fecha >=', $fecha_inicio);
-		$this->db->where('fecha <=', $fecha_fin);
-		$this->db->where('status',1);
-
-		return $this->db->count_all_results();
-	}//end getVisitasByMonth
-
-
-
-	public function getGananciasByMonth(){
-		$year = date('Y');
-		$mes  = date('m');
-		$dias = date('t');//obtiene el numero total de dias
-		$fecha_inicio = "$year-$mes-01";//2019-06-01
-		$fecha_fin    = "$year-$mes-$dias";//2019-06-31
-
-		$this->db->from('ventas');
-		$this->db->where('fecha >=', $fecha_inicio);
-		$this->db->where('fecha <=', $fecha_fin);
-		$this->db->where('status',1);
-
-		$this->db->select_sum('costo_total');
-		$query = $this->db->get();
-		if ($query->num_rows() >= 1)
-			return $query->result();
-		else
-			return false;
-	}//end getGananciasByMonth
-
-
-	public function getVentasByMonth(){
-		
-		$year = date('Y');
-		$mes  = date('m');
-		$dias = date('t');//obtiene el numero total de dias
-		$fecha_inicio = "$year-$mes-01";//2019-06-01
-		$fecha_fin    = "$year-$mes-$dias";//2019-06-31
-		
-		$this->db->select('id');
-		$this->db->from('ventas');
-		$this->db->where('fecha >=', $fecha_inicio);
-		$this->db->where('fecha <=', $fecha_fin);
-		$this->db->where('status',1);
-
-		return $this->db->count_all_results();
-	}//end getVentasByMonth
-
-
-	public function getInscritos(){		
-		$this->db->select('id');
-		$this->db->from('inscritos');
-		$this->db->where('status',1);
-		return $this->db->count_all_results();
-	}//end getInscritos
-
-
 	//obtiene visitas por mes
 	public function getVisitasByAllMonths(){
 		$totales = array();
@@ -320,6 +185,129 @@ class General extends CI_Model {
 		return $totales;
 	}//end getVisitasByAllMonths
 
+
+
+    function actualiza($object = null, $idobject = null, $other_tables = null){
+        // ── Validaciones ──────────────────────────────────────────────────────────
+        if ($object === null || $idobject === null || !is_numeric($idobject) || (int)$idobject <= 0) {
+            return false;
+        }
+
+        $object = is_object($object) ? (array)$object : $object;
+        if (!is_array($object)) {
+            return false;
+        }
+
+        $idobject = (int)$idobject;
+
+        // ── 1. Actualizar tabla principal ─────────────────────────────────────────
+        $fields = [];
+        foreach ($object as $key => $info) {
+            $fields[$key] = (is_array($info) && array_key_exists('value', $info))
+                ? $info['value']
+                : $info;
+        }
+
+        $this->db->where($this->id, $idobject);
+        $main_ok = $this->db->update($this->table, $fields);
+
+        if (!$main_ok || $other_tables === null) {
+            return $main_ok;
+        }
+
+        // ── 2. Procesar cada tabla pivote ─────────────────────────────────────────
+        $all_ok = true;
+
+        foreach ($other_tables as $pivot_table => $config) {
+
+            $fk_local     = $config['fk_local']     ?? null;
+            $status_field = $config['status_field']  ?? 'status';
+
+            if (empty($fk_local)) {
+                continue;
+            }
+
+            // ── MODO 2: UPDATE directo de campos ──────────────────────────────────
+            if (!empty($config['update']) && is_array($config['update'])) {
+                $this->db->where($fk_local, $idobject);
+                if (!$this->db->update($pivot_table, $config['update'])) {
+                    $all_ok = false;
+                }
+            }
+
+            // ── MODO 1: Sync lógico de IDs ────────────────────────────────────────
+            if (isset($config['sync']) && is_array($config['sync']) && !empty($config['fk_related'])) {
+                $fk_related = $config['fk_related'];
+                $new_ids    = $config['sync'];
+                $extra      = $config['extra'] ?? [];
+
+                if (!$this->_sync_pivot_logical(
+                    $pivot_table,
+                    $fk_local,
+                    $idobject,
+                    $fk_related,
+                    $new_ids,
+                    $extra,
+                    $status_field
+                )) {
+                    $all_ok = false;
+                }
+            }
+        }
+
+        return $all_ok;
+    }
+
+
+    private function _sync_pivot_logical($pivot_table, $fk_local, $idobject, $fk_related, array $new_ids, array $extra = [], $status_field = 'status') {
+        $this->db->select("{$fk_related}, {$status_field}");
+        $this->db->where($fk_local, $idobject);
+        $existing_rows = $this->db->get($pivot_table)->result_array();
+
+        $existing_map = [];
+        foreach ($existing_rows as $row) {
+            $existing_map[$row[$fk_related]] = (int)$row[$status_field];
+        }
+
+        $existing_ids = array_keys($existing_map);
+        $to_insert    = array_diff($new_ids, $existing_ids);   // Nunca han existido
+        $to_activate  = array_diff($new_ids, $to_insert);      // Ya existen (activos o no)
+        $to_deactivate= array_diff($existing_ids, $new_ids);   // Ya no deben estar activos
+
+        if (!empty($to_deactivate)) {
+            $this->db->where($fk_local, $idobject);
+            $this->db->where_in($fk_related, array_values($to_deactivate));
+            if (!$this->db->update($pivot_table, [$status_field => 0])) {
+                return false;
+            }
+        }
+
+        if (!empty($to_activate)) {
+            $this->db->where($fk_local, $idobject);
+            $this->db->where_in($fk_related, array_values($to_activate));
+            if (!$this->db->update($pivot_table, [$status_field => 1])) {
+                return false;
+            }
+        }
+
+        if (!empty($to_insert)) {
+            $rows = [];
+            foreach ($to_insert as $related_id) {
+                $rows[] = array_merge(
+                    [
+                        $fk_local   => $idobject,
+                        $fk_related => $related_id,
+                        $status_field => 1
+                    ],
+                    $extra
+                );
+            }
+            if (!$this->db->insert_batch($pivot_table, $rows)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 }//end class

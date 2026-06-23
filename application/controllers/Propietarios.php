@@ -117,7 +117,7 @@ class Propietarios extends CI_Controller {
 			redirect('propietarios');
 		endif;
 		$this->data['javascript'] = array('assets/js/jquery.min.js', 'assets/js/jquery.validate.js');
-		$this->data['menu_superior'] = $this->load->view('menu_superior', array('breadcrumb' => 'Propietarios / Agregar nuevo'), TRUE);
+		$this->data['menu_superior'] = $this->load->view('menu_superior', array('breadcrumb' => 'Propietarios / Editar registro'), TRUE);
 		$this->data['footer'] = $this->load->view('footer', '', TRUE);		
 		$this->general->table = $this->tabla;
 		$this->general->id    = $this->id;		
