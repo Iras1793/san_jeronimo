@@ -7,7 +7,7 @@
 */
 function _print_messages(){
 	$CI =& get_instance();
-	echo validation_errors('<div class="error">', '</div>');
+	echo validation_errors('<div class="error"><label class="error">', '</label></div>');
 	$all = $CI->messages->get();
 	foreach($all as $type=>$messages)
 		foreach($messages as $message)
